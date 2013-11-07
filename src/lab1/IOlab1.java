@@ -44,10 +44,12 @@ public class IOlab1 {
     public static void main(String[] args) {
         
        
-        int recordLines=2;//0-2 lines per record
+        int recordLines=4;//0-2 lines per record
+        int secondRecord=2;
+        int countRecord=0;
         /*//school path
        String fileSource="H:" + File.separatorChar +"WCTC" +File.separatorChar+ "Semester3" + File.separatorChar +
-               "AdvJava"+File.separatorChar+"IOlab1_textFileLocation" + File.separatorChar+"IOlab1_Names.txt";
+               "AdvJava"+File.separatorChar+"IOlab1_textFileLocation" + File.separatorChar+"IOlab1_ContactInfo.txt";
        */
         //other path
         String fileSource="E:" + File.separatorChar +"WCTC" +File.separatorChar+ "Semester3" + File.separatorChar +
@@ -138,6 +140,45 @@ public class IOlab1 {
                System.out.println("Cannot Close file...May not have been opened");
            }
        }
+       
+       //Read only 2nd record
+        System.out.println("***********2nd Record*****************");
+        System.out.println("**************************************");
+        try{
+           fIn= new BufferedReader(new FileReader(file));
+           String line = fIn.readLine();
+           
+           while(line!=null){
+               countRecord++;
+               for(int i=0;i<recordLines;i++){
+                   if(countRecord==secondRecord){
+                   System.out.println(line);
+                   }
+                   line=fIn.readLine();//need to continue reading file
+                   //System.out.println(line);
+                   
+                   
+               }
+               if(countRecord==secondRecord){
+               System.out.println(line+"\n");
+               }
+               line=fIn.readLine();//need to continue reading file
+           }
+           
+       }catch(IOException ioError){
+           
+       System.out.println("Problem! Cannot read file yo" + ioError);
+        } finally {
+            try {
+                fIn.close();
+            } catch(Exception e) {
+                System.out.println("Cannot Close File...May not have been opened or it has been moved.");
+            }
+        }
+        
+       
+       
+       
        
        //Create a Class and config file at runtime
        
