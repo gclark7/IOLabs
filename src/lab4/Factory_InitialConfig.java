@@ -61,7 +61,8 @@ public class Factory_InitialConfig implements Comparable{
         */
         //Map<String,String> m = fr.mapFile();
         //Map<Properties,Object> m = fr.mapFile();
-        Map<Properties,String> m = fr.mapFile();
+        //Map<Properties,String> m = fr.mapFile();
+        Map<String,Map> m = fr.mapFile();//changed format to map<String,Map<String,String>>
         
         if(!CustomErrorHandling.isNull_Empty(m)){
             /*//testing
@@ -82,8 +83,8 @@ public class Factory_InitialConfig implements Comparable{
                 
                 //String className = m.get(CONFIG_CONVERTER);
                 String className = props.getProperty(CONFIG_CONVERTER);
-                System.out.println(props.getProperty(CONFIG_CONVERTER));
-                System.out.println(m.get(CONFIG_CONVERTER));
+                //System.out.println(props.getProperty(CONFIG_CONVERTER));
+                //System.out.println(m.get(CONFIG_CONVERTER));
                 Class clss = Class.forName(className);
                 File_FormatConverter conv = (File_FormatConverter) clss.newInstance();
                 

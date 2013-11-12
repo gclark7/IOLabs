@@ -27,6 +27,8 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
      //ascii values: space=32, #=35, newline (maybe)10
      private char comment=35;//avoid config comments
      private char delimiter=32;//variables and values are separated by a single space
+     private String rec="Rec";
+     private int recNum=0;
 
     public File_FormatConverter_ConfigFile(){
         
@@ -56,7 +58,9 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
 
     @Override
     public Map mapFile(List<String> fileData) {
-         Map<String,String> m = new HashMap<String,String>();
+         Map<String,Map> m = new HashMap<String,Map>();
+         Map<String,String>dataMap=new HashMap<String,String>();
+         
         if(CustomErrorHandling.isNull_Empty(fileData)){
             
         }else{
@@ -74,7 +78,8 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
 ////testing
 //            //System.out.println(fileData.size());
 //                System.out.println(fileData.get(i));
-//            System.out.println(fileData.get(i).charAt(0));
+            System.out.println(fileData.get(i).charAt(0));
+                System.out.println((fileData.get(i).charAt(0)!=comment));
                 if(fileData.get(i).charAt(0)!=comment){
                     //break line into useable parts
                     int spaceAt=fileData.get(i).indexOf(delimiter);
@@ -104,12 +109,15 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
                      for(int x=0;x<value.length;x++){
                          vd+=value[x];
                      }
+                    // System.out.println(v + " " + vd);
+                     dataMap.put(v, vd);//enter strings into map
                      
-                     m.put(v, vd);//enter strings in to map
+                }else{
+
                 }
+                m.put(rec+i, dataMap);
             }
                 
-            
         }
         
         return m;

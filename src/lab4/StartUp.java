@@ -21,21 +21,24 @@ public class StartUp {
         
         //testing as we go
         //Test 1
-        /*
+        
         FileManager fm = new FileManager();
         fm.setReader(new File_ReaderText(new File_FormatConverter_ConfigFile(),"src" + File.separatorChar + "configFileManager.properties"));
         //fm.getReader().mapFile();
-        */
+        
+        
         
         //Test2
-        FileManager fm=Factory_InitialConfig.getDefaultFileManager();
-        fm.getReader().setPath("src" + File.separatorChar + "CSV.csv");
+//        FileManager fm=Factory_InitialConfig.getDefaultFileManager();
+//        fm.getReader().setPath("src" + File.separatorChar + "CSV.csv");
+//        
+//        System.out.println(fm.mapFile());
+//        
+//        System.out.println("************Custom Delimited*************");
+//        fm.getReader().setPath("src" + File.separatorChar + "CustomDelimited.dlm");
+//        fm.getReader().getFile_FormatConverter().setDelimiter('|');
         
-        System.out.println(fm.mapFile());
         
-        System.out.println("************Custom Delimited*************");
-        fm.getReader().setPath("src" + File.separatorChar + "CustomDelimited.dlm");
-        fm.getReader().getFile_FormatConverter().setDelimiter('|');
         
         System.out.println(fm.mapFile());
         System.out.println("********Loop trial*-*****");
@@ -47,14 +50,27 @@ public class StartUp {
             //mappy.get(m);
             Map s=(Map)m;
             for(Object r:s.keySet()){
-                System.out.println(r);
-                System.out.println(s.get(r));
+                System.out.println(r + " " +s.get(r) );
+                //System.out.print(s.get(r));
                 
             }
 //            System.out.println(fm.mapFile().get(m).);
 //            for(Object r:map.keySet())
         }
         
+        System.out.println("*************ConfigData***************");
+         for(Object m:mappy.values()){
+            System.out.println(m);
+            //Map mps = m;
+            //mappy.get(m);
+            Map<Object,Object> s=(Map)m;
+            
+            for(Object r:s.keySet()){
+                System.out.println(r + " " +s.get(r) );
+                //System.out.print(s.get(r));
+                
+            }
+         }
         
 
     }
