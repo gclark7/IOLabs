@@ -52,7 +52,7 @@ public class IOlab1 {
                "AdvJava"+File.separatorChar+"IOlab1_textFileLocation" + File.separatorChar+"IOlab1_ContactInfo.txt";
        */
         //other path
-        String fileSource="E:" + File.separatorChar +"WCTC" +File.separatorChar+ "Semester3" + File.separatorChar +
+        String fileSource="H:" + File.separatorChar +"WCTC" +File.separatorChar+ "Semester3" + File.separatorChar +
                "AdvJava"+File.separatorChar+"IOlab1_textFileLocation" + File.separatorChar+"IOlab1_ContactInfo.txt";
         
        File file= new File(fileSource);

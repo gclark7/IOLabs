@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author gclark7
  */
-public class File_ReaderText implements File_Reader {
+public class File_ReaderText implements File_Reader{
 
     private File_FormatConverter fc;
     private String path;

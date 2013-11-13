@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,8 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
      //ascii values: space=32, #=35, newline (maybe)10
      private char comment=35;//avoid config comments
      private char delimiter=32;//variables and values are separated by a single space
+     private char space=32;//spaces must separate # from comment
+     private char nl=000;
      private String rec="Rec";
      private int recNum=0;
 
@@ -41,88 +44,80 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
     @Override
     public Map mapFile(String fileData) {
         Map<String,String> m = new HashMap<String,String>();
-        //removed file reading to keep principle of least knowledge
-//        File file= new File(fileData);
-//        BufferedReader fIn=null;
-        
-        for(int i=0;i<fileData.length();i++){
-           //testing
-            //ascii values: space=32, #=35, newline (maybe)10
-            if(fileData.charAt(i)==10){
-                System.out.println();
-            }
-            System.out.print(fileData.charAt(i));
-        }
+       
         return m;
     }//mapFile
 
+    
+    
+    
+    
+    /**
+     * This one is the one I am working with!!!!!!!!!!!!!!!!
+     * @param fileData
+     * @return 
+     */
     @Override
     public Map mapFile(List<String> fileData) {
-         Map<String,Map> m = new HashMap<String,Map>();
-         Map<String,String>dataMap=new HashMap<String,String>();
+         Map<String,Map> dataMap = new LinkedHashMap<String,Map>();
+         Map<String,String>dataValues=new LinkedHashMap<String,String>();
+         String variable="";
+         String value="";
+         String rec="Rec";
+          //String v="";
+          //String vd="";
          
         if(CustomErrorHandling.isNull_Empty(fileData)){
             
         }else{
-            
-           
-            /*//need to play with iterators
-            Iterator iterate=fileData.listIterator();
-            while(iterate.hasNext()){
-                //nothing
-            }
-            * */
-            
-            //find lines with variables
-            for(int i=0;i<fileData.size();i++){
-////testing
-//            //System.out.println(fileData.size());
-//                System.out.println(fileData.get(i));
-            System.out.println(fileData.get(i).charAt(0));
-                System.out.println((fileData.get(i).charAt(0)!=comment));
-                if(fileData.get(i).charAt(0)!=comment){
-                    //break line into useable parts
-                    int spaceAt=fileData.get(i).indexOf(delimiter);
-                    char[] variable=new char[spaceAt];
-                    char[] value=new char[fileData.get(i).length()-spaceAt];
+            recNum=fileData.size();
+            String line; 
+//          
+            for(int i=0;i<recNum;i++){
+                System.out.println(fileData.get(i));
+                line= fileData.get(i);
+                if(fileData.get(i).charAt(0)!=nl && fileData.get(i).charAt(0)!=comment && fileData.get(i).charAt(0)!=space && fileData.get(i).charAt(0)!=10 ){
                     
-                    fileData.get(i).getChars(0, spaceAt, variable, 0);
-                    fileData.get(i).getChars(spaceAt+1, fileData.get(i).length(), value, 0);
-//                    
-//                    //a loop is not needed...The above method returns the needed chars between delimaters
-//                    /*
-//                    for(int lineChar=0;lineChar<spaceAt;lineChar++){
-//                        //working on this 11-8-2013
-//                        //variable+=fileData.get(i).getChars(spaceAt, spaceAt, dst, spaceAt);
-//                    }
-//                    for(int lineChar=spaceAt+1;lineChar<fileData.get(i).length();lineChar++){
-//                        //working on this 11-8-2013
-//                        value+=fileData.get(lineChar);
-//                    }
-//                    * */
-                    //convert char array to string
-                     String v="";
-                     String vd="";
-                     for(int x=0;x<variable.length;x++){
-                         v+=variable[x];
-                     }
-                     for(int x=0;x<value.length;x++){
-                         vd+=value[x];
-                     }
-                    // System.out.println(v + " " + vd);
-                     dataMap.put(v, vd);//enter strings into map
-                     
+                    int d=line.indexOf(delimiter);
+                    variable=line.substring(0, d)+" ";
+                    value=line.substring(d+1, line.length());
+                    
+//                    System.out.println("from configFile Converter " + variable + " " + value);
+                   
+                    dataValues.put(variable, value);
+                   
                 }else{
-
+                    variable=comment+""+i+" ";
+                    //int trm=line.lastIndexOf(comment);
+                    int trm=line.indexOf(space);
+                    value=line.substring(trm+1, line.length());
+                    value=value.trim();
+                    
+                    dataValues.put(variable, value);
                 }
-                m.put(rec+i, dataMap);
-            }
                 
+                 
+            }
+            dataMap.put(rec, dataValues);
         }
+//        for(Object dm:dataMap.keySet()){
+//            for(Map m:dataMap.values())
+//            System.out.println("From ConfigConverter " + m.get(dm));
+//        }
         
-        return m;
+        return dataMap;
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     public char getComment() {
         return comment;

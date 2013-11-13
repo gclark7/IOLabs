@@ -14,8 +14,8 @@ public class StartUp {
     public static void main(String[] args) {
         ReadFile r= new ReadFile();
     
-    r.showRecordAtSpecifiedIndex(50);
-    r.showCityFromSpecifiedRecord(50);
+    r.showRecordAtSpecifiedIndex(5);
+    r.showCityFromSpecifiedRecord(5);
     
     
     

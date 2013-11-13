@@ -1,0 +1,7 @@
+#0 Initial configuration for FileManager
+#1 Original creation : 11-7-2013
+#2 Ensure no white space between comments and variables
+reader lab4.File_ReaderText
+fileConverter lab4.File_FormatConverter_DelimitedFile
+writer lab4.File_WriterText
+#6 ensure no blank lines or returns beyond final comment line or variable line

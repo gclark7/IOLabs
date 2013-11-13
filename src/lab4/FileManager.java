@@ -3,16 +3,17 @@
  */
 package lab4;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  *
  * @author gclark7
  */
-public class FileManager implements Comparable{
+public class FileManager implements Comparable, Serializable{
     
     private File_Reader reader;
-    File_FormatConverter fc;
+    private File_FormatConverter fc;
     private File_Writer writer;
     private String path ="";
     

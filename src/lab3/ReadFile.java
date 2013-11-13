@@ -16,13 +16,13 @@ import java.io.IOException;
  * @author Greg Clark <gclark7@my.wctc.edu>
  */
 public class ReadFile {
-     /*//school path
+   //school path
     private String path="H:" + File.separatorChar +"WCTC" +File.separatorChar+ "Semester3" + File.separatorChar +
                "AdvJava"+File.separatorChar+"IOlab1_textFileLocation" + File.separatorChar+"IOlab1_ContactInfo.txt";
-       */
+     
        
-    private String path="E:" + File.separatorChar +"WCTC" +File.separatorChar+ "Semester3" + File.separatorChar +
-               "AdvJava"+File.separatorChar+"IOlab1_textFileLocation" + File.separatorChar+"IOlab1_ContactInfo.txt";;
+//    private String path="E:" + File.separatorChar +"WCTC" +File.separatorChar+ "Semester3" + File.separatorChar +
+//               "AdvJava"+File.separatorChar+"IOlab1_textFileLocation" + File.separatorChar+"IOlab1_ContactInfo.txt";;
     
     private int linesPerRecord=4;//0 starting position
     private int city=2;//0 starting position

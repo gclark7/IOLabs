@@ -44,7 +44,7 @@ public class File_FormatConverter_DelimitedFile implements File_FormatConverter{
         
         if(!CustomErrorHandling.isNull_Empty(fileData)){
             int headerCount=0;
-            //iterate over the first line in the list to find record count
+            //iterate over the first line in the list to find field count
             String lineOne=fileData.get(0);
             for(int i=0;i<lineOne.length();i++){
                 if(lineOne.charAt(i)==delimiter){
@@ -67,7 +67,7 @@ public class File_FormatConverter_DelimitedFile implements File_FormatConverter{
                }else{value+=c[i];}
                 
             }
-            //place the last value into headerFields[]
+            //place the last value into headerFields[] because value after last comma is ignored prior to this
             headerFields[x]=value;
             value="";
             x=0;
