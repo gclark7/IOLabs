@@ -30,6 +30,7 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
      private char delimiter=32;//variables and values are separated by a single space
      private char space=32;//spaces must separate # from comment
      private char nl=000;
+     private char nline=13;//13 carriage return, 10 line feed
      private String rec="Rec";
      private int recNum=0;
 
@@ -67,37 +68,38 @@ public class File_FormatConverter_ConfigFile implements File_FormatConverter{
           //String v="";
           //String vd="";
          
-        if(CustomErrorHandling.isNull_Empty(fileData)){
+        if(!CustomErrorHandling.isNull_Empty(fileData)){
             
-        }else{
+//        }else{
             recNum=fileData.size();
             String line; 
 //          
             for(int i=0;i<recNum;i++){
                 System.out.println(fileData.get(i));
                 line= fileData.get(i);
-                if(fileData.get(i).charAt(0)!=nl && fileData.get(i).charAt(0)!=comment && fileData.get(i).charAt(0)!=space && fileData.get(i).charAt(0)!=10 ){
-                    
-                    int d=line.indexOf(delimiter);
-                    variable=line.substring(0, d)+" ";
-                    value=line.substring(d+1, line.length());
-                    
-//                    System.out.println("from configFile Converter " + variable + " " + value);
-                   
-                    dataValues.put(variable, value);
-                   
-                }else{
-                    variable=comment+""+i+" ";
-                    //int trm=line.lastIndexOf(comment);
-                    int trm=line.indexOf(space);
-                    value=line.substring(trm+1, line.length());
-                    value=value.trim();
-                    
-                    dataValues.put(variable, value);
-                }
-                
+               // if(fileData.get(i).charAt(0)!=nline && fileData.get(i).charAt(0)!=comment && fileData.get(i).charAt(0)!=space ){
+                if(!line.isEmpty()){
+                    if(fileData.get(i).charAt(0)!=comment && fileData.get(i).charAt(0)!=space ){    
+                        int d=line.indexOf(delimiter);
+                        variable=line.substring(0, d)+" ";
+                        value=line.substring(d+1, line.length());
+
+    //                    System.out.println("from configFile Converter " + variable + " " + value);
+
+                        dataValues.put(variable, value);
+
+                    }else{
+                        variable=comment+""+i+" ";
+                        //int trm=line.lastIndexOf(comment);
+                        int trm=line.indexOf(space);
+                        value=line.substring(trm+1, line.length());
+                        value=value.trim();
+
+                        dataValues.put(variable, value);
+                    }//else line is a comment
+                }//if line !isEmpty()
                  
-            }
+            }//loops through file lines
             dataMap.put(rec, dataValues);
         }
 //        for(Object dm:dataMap.keySet()){

@@ -12,7 +12,7 @@ public class CustomErrorHandling {
     
      public static final boolean isNull_Empty(Object o){
         boolean b=true;
-        if(o==null||o==""){
+        if(o==null||o==""||o==" "){
             b=true;
         }else{b=false;}
         return b;

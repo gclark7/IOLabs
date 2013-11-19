@@ -21,6 +21,7 @@ import java.util.Set;
 public class Factory_InitialConfig implements Comparable{
 //    private static String path="src" + File.separatorChar + "configFileManager.properties";
     private static String path="src" + File.separatorChar + "TestConfig.properties";
+    private static String dir="src";
     private static File_Reader fr = new File_ReaderText(new File_FormatConverter_ConfigFile(),path);
     private static final String CONFIG_READER="reader";
     private static final String CONFIG_CONVERTER="fileConverter";
@@ -123,6 +124,8 @@ public class Factory_InitialConfig implements Comparable{
         throw new UnsupportedOperationException("Not really sure what to compare it to..This is a singleton."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+    public static final String getDir(){
+        return dir;
+    }
     
 }

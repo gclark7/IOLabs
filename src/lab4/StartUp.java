@@ -26,7 +26,7 @@ public class StartUp {
         //Test 1
         FileManager fm = new FileManager();
         fm.setReader(new File_ReaderText(new File_FormatConverter_ConfigFile(),"src" + File.separatorChar + "configFileManager.properties"));
-       
+//        fm.setReader(new File_ReaderText(new File_FormatConverter_ConfigFile(),"src" + File.separatorChar + "Config.properties"));
               
 //        Test2
 //        FileManager fm=Factory_InitialConfig.getDefaultFileManager();
@@ -86,6 +86,8 @@ public class StartUp {
         } catch (IOException ex) {
             Logger.getLogger(StartUp.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }
-}
+        
+        System.out.println("******************************END TEST************************");
+        GUI_FileManager.main(args);
+    }//maim
+}//driver Class

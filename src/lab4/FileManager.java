@@ -3,6 +3,7 @@
  */
 package lab4;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class FileManager implements Comparable, Serializable{
     private File_FormatConverter fc;
     private File_Writer writer;
     private String path ="";
-    
+    private File f;
     /**
      * default constructor
      */
@@ -28,6 +29,7 @@ public class FileManager implements Comparable, Serializable{
         setReader(r);
         setWriter(w);
         setPath(path);
+        f= new File(path);
     }
     
     /**
@@ -128,6 +130,14 @@ public class FileManager implements Comparable, Serializable{
      */
    public Map mapFile(){
        return reader.mapFile();
+   }
+   
+   public File getFile(){
+       return f;
+   }
+   
+   public void setFile(String s){
+       f=new File(s);
    }
    
     

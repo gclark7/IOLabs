@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,7 @@ public class File_ReaderText implements File_Reader{
     private final String MSG_FILE_PROBLEM="Problem! Cannot read file yo";
     private final String MSG_FILE_CLOSE_PROBLEM="Cannot Close File...May not have been opened or it has been moved.";
     
+    private Path p;//just learning about Path
     
     
     
@@ -42,6 +45,8 @@ public class File_ReaderText implements File_Reader{
     public File_ReaderText(String path){
         
         setPath(path);
+       
+        
     }
     
     /**
@@ -125,13 +130,17 @@ public class File_ReaderText implements File_Reader{
     }
 
     public String getPath() {
+        
         return path;
     }
 
     public void setPath(String path) {
         if(CustomErrorHandling.isNull_Empty(path)){
             throw new UnsupportedOperationException(MSG_NULL);
-        }else{this.path = path;}
+        }else{
+            this.path = path;
+             p=Paths.get(path);
+        }
     }
 
    
